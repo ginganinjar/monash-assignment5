@@ -23,13 +23,33 @@ $(document).ready(function() {
 var  theMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 
-
+ function dateStart () { 
+  var first = moment().startOf('month');
+  switch(first.day()) {
+      case 6:
+          return first.add(2, 'days');
+      case 0:
+          return first.add(1, 'days');
+      default:
+          return first;
+  };
+}
 
 function setupPage() {
-  //nowValue['year'] = moment().year();
+  
+  var theDay = [parseInt(moment().day())];
   var theMonth = theMonths [parseInt(moment().month())];
-  var theYear = [parseInt(moment().year())]
-  console.log(theMonth);
+  var theYear = [parseInt(moment().year())];
+  var theFirstWeekday = dateStart();
+  
+  const date = moment().startOf('month'); // Thursday Feb 2015
+  const dow = date.day();
+
+  console.log ("First day of the month is " + Math.floor(dow));
+
+
+  console.log("the current day" + theDay);
+  console.log("the current month" + theMonth);
 $("#month").html("<p>" + theMonth + " " + theYear + "</p>") ;
 
 }
