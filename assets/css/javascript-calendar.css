@@ -222,6 +222,7 @@ textarea.meta-fix-departure-calendar {
   }
   
   .month ul {
+    list-style-type:none;
     margin: 0;
     padding: 0;
   }
@@ -236,9 +237,12 @@ textarea.meta-fix-departure-calendar {
   .month .prev {
     float: left;
     padding-top: 10px;
+    cursor: pointer;
+
   }
   
   .month .next {
+    cursor: pointer;
     float: right;
     padding-top: 10px;
   }
@@ -289,5 +293,10 @@ textarea.meta-fix-departure-calendar {
   }
   
   @media screen and (max-width: 290px) {
-    .weekdays li, .days li {width: 12.2%;}
-  } 
+        .weekdays li, .days li {width: 12.2%;}
+    } 
+
+    .dayinMomth {
+        float: left;
+
+    }

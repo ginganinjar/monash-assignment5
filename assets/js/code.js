@@ -50,8 +50,18 @@ function setupPage() {
 
   console.log("the current day" + theDay);
   console.log("the current month" + theMonth);
-$("#month").html("<p>" + theMonth + " " + theYear + "</p>") ;
+  $("#theMonth").html("<p>" + theMonth + " " + theYear + "</p>") ;
+  var thisMonthHasHowMany = parseInt(moment().daysInMonth());
+  var thisDayDiv; 
 
+    for (i=0;i < thisMonthHasHowMany; i ++) {
+   // alert (i);
+      thisDayDiv = $("<p>");
+       thisDayDiv.addClass("dayinMomth");
+        thisDayDiv.text(i);
+       // $("#thedays").append(thisDayDiv);
+
+    }
 }
 
 setupPage();
