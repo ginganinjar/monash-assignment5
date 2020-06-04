@@ -298,5 +298,28 @@ textarea.meta-fix-departure-calendar {
 
     .dayinMomth {
         float: left;
+        height: 55px;
+        width: 56px;
+        border: solid;
+        padding: 3%;
+        MARGIN-TOP: 0;
+        MARGIN-BOTTOM: 0;
+    }
+
+
+    .daysInWeek {
+        float: left;
+        height: 55px;
+        width: 55px;
+        border: none;
+        padding: 3%;
+        text-align: -webkit-center;
+        padding-right: -7%;
+    margin-bottom: 0;
 
     }
+
+.callenderFace {
+    WIDTH: 400px;
+}
+ 

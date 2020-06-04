@@ -54,12 +54,24 @@ function setupPage() {
   var thisMonthHasHowMany = parseInt(moment().daysInMonth());
   var thisDayDiv; 
 
-    for (i=0;i < thisMonthHasHowMany; i ++) {
-   // alert (i);
+
+  // theTotalToStart is used to start showing dates at the correct and first day of the month.
+    var theTotalToStart = thisMonthHasHowMany + Math.floor(dow);
+
+
+    // 7 * 5 = 35 - the total number of squares in any given month
+    for (i=0;i < 35; i ++) {
+
       thisDayDiv = $("<p>");
        thisDayDiv.addClass("dayinMomth");
-        thisDayDiv.text(i);
-       // $("#thedays").append(thisDayDiv);
+      
+      if (i >= Math.floor(dow) && i <= thisMonthHasHowMany) {
+          thisDayDiv.text(i);
+            thisDayDiv.css("background-color","cornsilk");
+        
+            } else {thisDayDiv.text("");}
+      
+        $("#thedays").append(thisDayDiv);
 
     }
 }
