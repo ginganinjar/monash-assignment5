@@ -38,11 +38,6 @@ var  theMonths = ["January", "February", "March", "April", "May", "June", "July"
 var Goback = 0;
 
 function setupPage(x) {
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 6f82b55224e5e1595e88f31de60113053f4a845f
     // the month today
 
     if (x === -1) {
