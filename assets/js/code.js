@@ -35,14 +35,12 @@ var  theMonths = ["January", "February", "March", "April", "May", "June", "July"
   };
 }
 
-var theRoamingMonth = parseInt(moment().month());
 var Goback = 0;
 
 
 
 
 function setupPage(x) {
-  var theDaysOfTheWeek = ["Sun","Mon","Tue", "Wed","Thu","Fri", "Sat"]; 
 
     // the month today
 
@@ -86,11 +84,6 @@ function setupPage(x) {
   $("#theMonth").html("<p>" + theMonth + " " + theYear + "</p>") ;
   var thisMonthHasHowMany = parseInt(moment().daysInMonth());
   var thisDayDiv; 
-
-
-  // theTotalToStart is used to start showing dates at the correct and first day of the month.
-    var theTotalToStart = thisMonthHasHowMany + dow;
-
 
     // 7 * 5 = 35 - the total number of squares in any given month
     for (i=0;i < 35; i ++) {
