@@ -38,7 +38,12 @@ var  theMonths = ["January", "February", "March", "April", "May", "June", "July"
 var Goback = 0;
 
 function setupPage(x) {
+  
     // the month today
+
+    if (x === 0) {
+        Goback = 0;
+      }
 
     if (x === -1) {
         Goback ++;
@@ -78,6 +83,12 @@ function setupPage(x) {
         console.log("the current month" + theMonth);
 
   $("#theMonth").html("<p>" + theMonth + " " + theYear + "</p>") ;
+      
+
+  
+
+
+
   var thisMonthHasHowMany = parseInt(moment().daysInMonth());
   var thisDayDiv; 
 
@@ -92,7 +103,8 @@ function setupPage(x) {
             thisDayDiv.css("background-color","cornsilk");
             thisDayDiv.css("cursor","pointer");
             } else {thisDayDiv.text("");}
-        $("#thedays").append(thisDayDiv);
+                        
+            $("#thedays").append(thisDayDiv);
 
     }
 }
@@ -103,6 +115,10 @@ setupPage(0);
 
 $(".prev").click(function(){setupPage(-1);});
 $(".next").click(function(){setupPage(1);});
+
+// reset back to today.
+$("#showNow").click(function(){
+  $(".dayinMomth").remove();setupPage(0);});
 
 console.log( "ready!" );
 });
