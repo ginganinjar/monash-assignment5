@@ -23,19 +23,36 @@ $(document).ready(function() {
 var  theMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 
- function dateStart () { 
-  var first = moment().startOf('month');
-  switch(first.day()) {
-      case 6:
-          return first.add(2, 'days');
-      case 0:
-          return first.add(1, 'days');
-      default:
-          return first;
-  };
-}
 
 var Goback = 0;
+
+function isEven(value) {
+	if (value%2 == 0)
+		return true;
+	else
+		return false;
+}
+
+function showThisDay(x){
+
+
+ for (i = 0; i < 9; i++) {   
+   var plannerBox = $("<div>");
+   if (isEven(i)) {
+   plannerBox.attr("class", "plannerBoxEven");} else {plannerBox.attr("class", "plannerBoxOdd");}
+    //plannerBox.text("Daily planner");
+    $("#dplanner").append(plannerBox);
+
+        // create control tab
+        var controlTab = $("<div>");
+        controlTab.attr("class", "plannerBoxTab");
+        $("#dplanner").append(controlTab);
+
+ }
+
+
+}
+
 
 function setupPage(x) {
   
@@ -83,34 +100,48 @@ function setupPage(x) {
         console.log("the current month" + theMonth);
 
   $("#theMonth").html("<p>" + theMonth + " " + theYear + "</p>") ;
-      
-
-  
-
-
-
+     
   var thisMonthHasHowMany = parseInt(moment().daysInMonth());
   var thisDayDiv; 
 
     // 7 * 5 = 35 - the total number of squares in any given month
     for (i=0;i < 35; i ++) {
 
-      thisDayDiv = $("<p>");
+      thisDayDiv = $("<div>");
        thisDayDiv.addClass("dayinMomth");
       
+       // based on the way that the callender works, we want to roll out days
+       // based on the correct start of the week.
       if (i >= dow && i <= thisMonthHasHowMany) {
           thisDayDiv.text((i + 1) - dow);
-            thisDayDiv.css("background-color","cornsilk");
-            thisDayDiv.css("cursor","pointer");
-            } else {thisDayDiv.text("");}
-                        
+           
+     // if this block is the current day, give it a different backgdound
+          if (i === parseInt(theDay)) {
+            thisDayDiv.css("background-color","#dedcde");
+          } else {
+                thisDayDiv.css("background-color","white");
+          }
+
+          thisDayDiv.css("cursor","pointer");
+            } else {thisDayDiv.text("");
+            thisDayDiv.css("background-color","#eff0f1");
+        }
+                thisDayDiv.attr("id",i);
+              thisDayDiv.click(function(){
+                var thisDate = [i + 1];
+                    showThisDay (this.id);
+                
+            })
+
             $("#thedays").append(thisDayDiv);
+            
+          
 
     }
 }
 
 setupPage(0);
-
+showThisDay(0);
 
 
 $(".prev").click(function(){setupPage(-1);});

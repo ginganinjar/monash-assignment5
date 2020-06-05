@@ -23,7 +23,7 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background-color: #2ecc71;
+    background-color: #dedcde;
     width: 100%;
     padding: 10px;
     color: #fff;
@@ -296,6 +296,13 @@ textarea.meta-fix-departure-calendar {
         .weekdays li, .days li {width: 12.2%;}
     } 
 
+.display-3 {
+    text-align: center;
+}
+
+.lead {
+    text-align: center;
+}
     .dayinMomth {
         float: left;
         height: 55px;
@@ -323,3 +330,39 @@ textarea.meta-fix-departure-calendar {
     WIDTH: 400px;
 }
  
+.plannerBoxEven {
+    width : 90%;
+    background-color:#dce6f1;
+    border: solid;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    height:52px;
+  margin-top : -3px;
+  float:left;
+}
+
+.plannerBoxTab {
+    height:52px;
+    width : 9%;
+    float : left;
+    background-color: #1abc9c;
+    border: solid;
+    margin-top: -3px;
+    border-radius: 15px 50px 30px 5px; 
+
+  }
+ 
+.plannerBoxOdd { 
+     width : 90%;
+    background-color:#f7f7f7;
+    border: solid;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    height:52px;
+  margin-top : -3px;
+  float:left;
+}
