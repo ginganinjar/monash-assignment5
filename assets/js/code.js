@@ -37,11 +37,8 @@ var  theMonths = ["January", "February", "March", "April", "May", "June", "July"
 
 var Goback = 0;
 
-
-
-
 function setupPage(x) {
-
+  
     // the month today
 
     if (x === 0) {
@@ -72,7 +69,7 @@ function setupPage(x) {
         // for some reason the value in a loop would not resolve
         // had to do it manually like below, which is aweful i know 
         // but i couldn't work out any other way.
-        
+
         if (dateArray[0] === "Sun") {dow = 0;}
         if (dateArray[0] === "Mon") {dow = 1;}
         if (dateArray[0] === "Tue") {dow = 2;}
