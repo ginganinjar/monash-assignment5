@@ -35,15 +35,10 @@ var  theMonths = ["January", "February", "March", "April", "May", "June", "July"
   };
 }
 
-var theRoamingMonth = parseInt(moment().month());
 var Goback = 0;
 
-
-
-
 function setupPage(x) {
-  var theDaysOfTheWeek = ["Sun","Mon","Tue", "Wed","Thu","Fri", "Sat"]; 
-
+  
     // the month today
 
     if (x === -1) {
@@ -70,7 +65,7 @@ function setupPage(x) {
         // for some reason the value in a loop would not resolve
         // had to do it manually like below, which is aweful i know 
         // but i couldn't work out any other way.
-        
+
         if (dateArray[0] === "Sun") {dow = 0;}
         if (dateArray[0] === "Mon") {dow = 1;}
         if (dateArray[0] === "Tue") {dow = 2;}
@@ -87,11 +82,6 @@ function setupPage(x) {
   var thisMonthHasHowMany = parseInt(moment().daysInMonth());
   var thisDayDiv; 
 
-
-  // theTotalToStart is used to start showing dates at the correct and first day of the month.
-    var theTotalToStart = thisMonthHasHowMany + dow;
-
-
     // 7 * 5 = 35 - the total number of squares in any given month
     for (i=0;i < 35; i ++) {
 
@@ -103,8 +93,7 @@ function setupPage(x) {
             thisDayDiv.css("background-color","cornsilk");
             thisDayDiv.css("cursor","pointer");
             } else {thisDayDiv.text("");}
-                        
-                        $("#thedays").append(thisDayDiv);
+        $("#thedays").append(thisDayDiv);
 
     }
 }
