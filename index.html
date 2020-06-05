@@ -17,7 +17,7 @@
   <body>
     <header class="jumbotron">
       <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work day</p>
+      <p class="lead" id="dateToShow">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
 
@@ -44,9 +44,9 @@
       <p class="daysInWeek">THU</p>
       <p class="daysInWeek">FRI</p>
       <p class="daysInWeek">SAT</p>
-     
+  
      <div id="thedays"></div>
-
+         
 
       </div>
 
@@ -61,7 +61,11 @@
       
           <div class="col-sm-6">
           <!-- daily callender -->
-          <div id="dplanner"></div>
+             
+               <div class="theDaysParent">
+      
+        <div id="dplanner"></div>
+      </div>
 
        </div>
       </div>

@@ -35,21 +35,44 @@ function isEven(value) {
 
 function showThisDay(x){
 
+    // if this has come from the user it will have a zero x
+    // if that's the case, remove all active elements and start again.
+  
+    if (x !== 0) {
+        $(".plannerBoxTab").remove();
+        $(".plannerBoxEven").remove();
+        $(".plannerBoxOdd").remove();
+                 }
 
- for (i = 0; i < 9; i++) {   
-   var plannerBox = $("<div>");
+// lets do all 24 hours in the day. x
+ for (i = 0; i < 24; i++) {   
+  
+  
+   var controlTab = $("<div>");
+    controlTab.attr("class", "plannerBoxTab");
+    controlTab.attr("id","timeID" + i); 
+    var doTime = i;
+    
+      if (i === 12) {doTime = 12 + "pm";}
+      if (i < 12) {doTime = i + "am";}
+      if (i === 0) {doTime = 12 + "am"};
+      if (i > 12) {doTime = (i - 12) + "pm";} 
+      
+      controlTab.text(doTime);
+      $("#dplanner").append(controlTab);
+ 
+
+    var plannerBox = $("<div>");
    if (isEven(i)) {
    plannerBox.attr("class", "plannerBoxEven");} else {plannerBox.attr("class", "plannerBoxOdd");}
     //plannerBox.text("Daily planner");
     $("#dplanner").append(plannerBox);
 
         // create control tab
-        var controlTab = $("<div>");
-        controlTab.attr("class", "plannerBoxTab");
-        $("#dplanner").append(controlTab);
 
  }
-
+ 
+ $("#timeID9")[0].scrollIntoView();
 
 }
 
@@ -70,6 +93,13 @@ function setupPage(x) {
         Goback --;
         $(".dayinMomth").remove();
     }
+       // the true month
+       var theTrueMonth = [parseInt(moment().subtract(0, 'month').format('MM'))];
+       var theTrueMonth = theMonths[theTrueMonth - 1];
+
+        // the true year
+        var theTrueYear = parseInt(moment().subtract(0, 'month').format('YYYY')); 
+    
         // the month today +/- mod
         var theMonthNumber = [parseInt(moment().subtract(Goback, 'month').format('MM'))];
         var theMonth = theMonths[theMonthNumber - 1];
@@ -103,6 +133,7 @@ function setupPage(x) {
      
   var thisMonthHasHowMany = parseInt(moment().daysInMonth());
   var thisDayDiv; 
+  
 
     // 7 * 5 = 35 - the total number of squares in any given month
     for (i=0;i < 35; i ++) {
@@ -113,22 +144,25 @@ function setupPage(x) {
        // based on the way that the callender works, we want to roll out days
        // based on the correct start of the week.
       if (i >= dow && i <= thisMonthHasHowMany) {
-          thisDayDiv.text((i + 1) - dow);
-           
+        
+         thisDayDiv.text((i + 1) - dow);
+         thisDayDiv.attr("data-month",theMonth );
+         thisDayDiv.attr("data-year",theYear );
      // if this block is the current day, give it a different backgdound
-          if (i === parseInt(theDay)) {
-            thisDayDiv.css("background-color","#dedcde");
+       
+        if (i === parseInt(theDay) && theTrueMonth === theMonth && theTrueYear === theYear) {
+            thisDayDiv.css("background-color","#dce6f1");
           } else {
-                thisDayDiv.css("background-color","white");
-          }
+            thisDayDiv.css("background-color","white");
+                    }
 
           thisDayDiv.css("cursor","pointer");
             } else {thisDayDiv.text("");
             thisDayDiv.css("background-color","#eff0f1");
-        }
+                     }
                 thisDayDiv.attr("id",i);
-              thisDayDiv.click(function(){
-                var thisDate = [i + 1];
+                 thisDayDiv.click(function(){
+                 var thisDate = [i + 1];
                     showThisDay (this.id);
                 
             })
