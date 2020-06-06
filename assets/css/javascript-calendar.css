@@ -54,6 +54,9 @@
         MARGIN-BOTTOM: 0;
     }
 
+    .daysToDelete {
+     
+  }
 
     .daysInWeek {
         float: left;
@@ -103,7 +106,9 @@
     float : left;   
     background-color:#dce6f1;
     border: groove;
-     border-radius: 15px 50px 30px 5px; 
+    border-radius: 5px 15px 30px 5px;
+     font-size: xx-large;
+     color: #c71515;
   }
 
 .plannerBoxOdd { 
@@ -147,6 +152,10 @@ float:left;
 float:left;
 }
 
+.plannerBoxNow .isHidden {
+visibility: hidden;
+
+}
 
 .theDaysParent {
     max-height: 451px;
@@ -158,7 +167,10 @@ float:left;
 }
 
 .killme {
+}
 
+.textBoxClass {
+  resize: none;
 
 }
 

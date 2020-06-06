@@ -17,11 +17,13 @@
 // ```
 
 
+
 $(document).ready(function() {
 
 
 var  theMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-
+var thisDay = moment().format('DDMMY');
+var rightNow = moment().format('DDMMY');
 
 
 var Goback = 0;
@@ -34,9 +36,8 @@ function isEven(value) {
 }
 
 function showThisDay(x){
+var weAreHome = false;
 
-
-  // get the current time according to moment. (in hour format)
   varRightNow = moment();
     varRightHour = varRightNow.hour();
       console.log("right now " + varRightHour);
@@ -44,17 +45,61 @@ function showThisDay(x){
     // if this has come from the user it will have a zero x
     // if that's the case, remove all active elements and start again.
   
-    if (x !== 0) {
-        $(".killme").remove();
-       // $(".plannerBoxEven").remove();
-       // $(".plannerBoxOdd").remove();
-                 }
+    if (x.length > 2) {
+      thisDay = x;
+        
+          // because javascript is like coding with a potato, and because the artifical placement
+          // of a 0 in front of the i integer from the sender is still traunicated, and because
+          // regix no longer works, I have to manually look for date ranges that are 7 as opposed 
+          // to 8. and upon finding this, add it back into the string.
+         
+           if (thisDay.length == 7) {
+            thisDay = "0" + thisDay;
+          }      
+        }
 
-// lets do all 24 hours in the day. x
- for (i = 0; i < 24; i++) {   
+       
+
+
+    if (x !== 0) { $(".killme").remove(); } //this resets the callander in light of a new cycle. 
+    if (x === 0) { weAreHome = true;} // meaning that we are on the same day as the events we wish to see.
+      
+      // -1 and + 1 are used for plus month next and prev tabs
+      // this information (the date) is stored in global variable - this day
+    
+    // this detects a referral augment for a month
+    if ((x === -1) || (x === +1)) { $(".killme").remove(); x= thisDay}
+    
+      now = parseInt(moment().format('DDMMY')).toString();
+ 
+    // set up master date
+    $("#currentDay").html("<b>" + moment(thisDay.substr(2, 2) + "-" + thisDay.substr(0,2) + "-" + thisDay.substr(4,4 )).format('dddd, MMMM Do YYYY') + "</b>") ;
+
+      if (x.toString().search(now) !== -1) {
+        weAreHome = true;
+        console.log ("match found");};
+
+      // so now we have our desired date - we need to search local storage
+      // for events corresponding with ThisDay
+
+
+        // lets do all 24 hours in the day. x
+ 
+        // for class purposes, we need to check if the date we are currently viewing, is before today
+        // or after today.
+        // time that is in the past will result in a blocked cell. time in the future will use the
+        // even and odd visuals.
+
+        var isPast = false;      
+          if (moment(thisDay.substr(2, 2) + "-" + thisDay.substr(0,2) + "-" + thisDay.substr(4,4 )  ).isAfter( rightNow.substr(2, 2) + "-" + rightNow.substr(0,2) + "-" + rightNow.substr(4,4 )) === true) {
+           isPast = true;
+              }
+
+
+  for (i = 0; i < 24; i++) {   
   
   
-   var controlTab = $("<div>");
+    var controlTab = $("<div>");
     controlTab.attr("class", "plannerBoxTab killme");
     controlTab.attr("id","timeID" + i); 
     var doTime = i;
@@ -67,34 +112,33 @@ function showThisDay(x){
       controlTab.text(doTime);
       $("#dplanner").append(controlTab);
  
+    // Create the planner box.
 
     var plannerBox = $("<div>");
-   if (isEven(i)) {
-      plannerBox.attr("class", "plannerBoxEven killme");} else {plannerBox.attr("class", "plannerBoxOdd killme");}
-
-    if (i < varRightHour) {
-      plannerBox.attr("class", "plannerBoxPast killme");
-        }
-
-        if (i === varRightHour) {
-          plannerBox.attr("class", "plannerBoxNow killme");
-          
-          }
-
-
-    //plannerBox.text("Daily planner");
-    $("#dplanner").append(plannerBox);
-
-        // create control tab
-
-        var controlTabSave = $("<div>");
-        controlTabSave.attr("class", "plannerBoxSave killme");        
-       // controlTabSave.text(doTime);
-          $("#dplanner").append(controlTabSave);
-     
+    var controlTabSave = $("<div>");
+    controlTabSave.attr("class", "plannerBoxSave killme fas fa-save");
+    
+    if (isEven(i)) { plannerBox.attr("class", "plannerBoxEven killme");} 
+    else 
+    { plannerBox.attr("class", "plannerBoxOdd killme"); }
+   
+    if ((i < varRightHour) && (isPast == false)) { 
+      plannerBox.attr("class", "plannerBoxPast killme"); 
+      controlTabSave.attr("style", "color:grey");
+    }
+    if ((i === varRightHour) && (weAreHome)) { 
+      plannerBox.attr("class", "plannerBoxNow killme");
+      controlTabSave.attr("style", "color:red");
+    }
+    
+    plannerBox.append('<textarea placeholder="Remember, be nice!" cols="30" rows="5" class="isHidden></textarea>');
+      $("#dplanner").append(plannerBox); // main box
 
 
- }
+    $("#dplanner").append(controlTabSave); // tab box
+    
+  
+  }
  
  $("#timeID9")[0].scrollIntoView();
 
@@ -103,10 +147,9 @@ function showThisDay(x){
 
 function setupPage(x) {
   
-    // the month today
 
-    if (x === 0) {
-        Goback = 0;
+   if (x === 0) {
+      Goback = 0;
       }
 
     if (x === -1) {
@@ -116,13 +159,15 @@ function setupPage(x) {
     if (x === + 1) {
         Goback --;
         $(".dayinMomth").remove();
-    }
+    } 
+
+
        // the true month
        var theTrueMonth = [parseInt(moment().subtract(0, 'month').format('MM'))];
        var theTrueMonth = theMonths[theTrueMonth - 1];
 
-        // the true year
-        var theTrueYear = parseInt(moment().subtract(0, 'month').format('YYYY')); 
+        // the momth and year
+        var parseThis = moment().subtract(Goback, 'month').format('MM') + moment().subtract(0, 'month').format('YYYY'); 
     
         // the month today +/- mod
         var theMonthNumber = [parseInt(moment().subtract(Goback, 'month').format('MM'))];
@@ -131,8 +176,11 @@ function setupPage(x) {
         // the year today +/- mod
         var theYear = parseInt(moment().subtract(Goback, 'month').format('YYYY'));
         // the day today +/- mod
-        var theDay = parseInt(moment().subtract(Goback, 'month').format('DD'));
-  
+        var theDay = moment().subtract(Goback, 'month').format('DD'); 
+
+        // set global variable
+        thisDay = moment().subtract(Goback, 'month').format('DD') + moment().subtract(Goback, 'month').format('MM') + theYear;
+
         // do a strip of the first day of the month - Sun Mar 01 2020 00:00:00 GMT+1100
         var findMyFirstDay = moment([theYear, theMonthNumber - 1]).toString();
         var dateArray = findMyFirstDay.split(" ");
@@ -149,10 +197,6 @@ function setupPage(x) {
         if (dateArray[0] === "Fri") {dow = 5;}
         if (dateArray[0] === "Sat") {dow = 6;}
                 
-        console.log("FIRST day of the week is" + dow);
-        console.log("the current day" + theDay);
-        console.log("the current month" + theMonth);
-
   $("#theMonth").html("<p>" + theMonth + " " + theYear + "</p>") ;
      
   var thisMonthHasHowMany = parseInt(moment().daysInMonth());
@@ -163,43 +207,52 @@ function setupPage(x) {
     for (i=0;i < 35; i ++) {
 
       thisDayDiv = $("<div>");
-       thisDayDiv.addClass("dayinMomth");
+       
       
        // based on the way that the callender works, we want to roll out days
-       // based on the correct start of the week.
+       // based on the correct start of the week so we add the day of the week (dow) to the counter
+       // before we start showing the actual days.
+       
       if (i >= dow && i <= thisMonthHasHowMany) {
-        
+        thisDayDiv.addClass("dayinMomth daysToDelete");
          thisDayDiv.text((i + 1) - dow);
-         thisDayDiv.attr("data-month",theMonth );
-         thisDayDiv.attr("data-year",theYear );
      // if this block is the current day, give it a different backgdound
        
-        if (i === parseInt(theDay) && theTrueMonth === theMonth && theTrueYear === theYear) {
+        if (i === (parseInt(theDay) + dow) - 1) {
             thisDayDiv.css("background-color","#dce6f1");
           } else {
             thisDayDiv.css("background-color","white");
                     }
 
           thisDayDiv.css("cursor","pointer");
-            } else {thisDayDiv.text("");
-            thisDayDiv.css("background-color","#eff0f1");
-                     }
-                thisDayDiv.attr("id",i);
-                 thisDayDiv.click(function(){
-                 var thisDate = [i + 1];
-                    showThisDay (this.id);
-                
-            })
+          // this div presents the days of the month that are active.
+          thisDayDiv.click(function()
+          {
+            $(".daysToDelete").css("background","#fff");
+            $(this).css("background", "#dce6f1");
+            showThisDay (this.id);
+          
+          })} 
+          
+          else 
+        
+            {
+              thisDayDiv.addClass("dayinMomth");
+              thisDayDiv.text("");
+              thisDayDiv.css("background-color","#eff0f1");
+            }
+                    
+                thisDayDiv.attr("id",((i - dow) + 1) + parseThis);
 
             $("#thedays").append(thisDayDiv);
-            
-          
+             }
+   
+    showThisDay(x);
 
-    }
 }
 
 setupPage(0);
-showThisDay(0);
+
 
 
 $(".prev").click(function(){setupPage(-1);});
@@ -207,7 +260,10 @@ $(".next").click(function(){setupPage(1);});
 
 // reset back to today.
 $("#showNow").click(function(){
-  $(".dayinMomth").remove();setupPage(0);});
+  $(".dayinMomth").remove();
+  $(".killme").remove();
+  
+  setupPage(0);});
 
 console.log( "ready!" );
 });
