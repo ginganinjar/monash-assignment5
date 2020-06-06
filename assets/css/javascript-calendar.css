@@ -74,7 +74,7 @@
  
 
 .plannerBoxEven {
-    width : 90%;
+    width : 80%;
     background-color:#dce6f1;
     border: groove;
     text-align: center;
@@ -97,8 +97,17 @@
 
   }
  
+  .plannerBoxSave {
+    height:50px;
+    width : 9%;
+    float : left;   
+    background-color:#dce6f1;
+    border: groove;
+     border-radius: 15px 50px 30px 5px; 
+  }
+
 .plannerBoxOdd { 
-     width : 90%;
+     width : 80%;
     background-color:#f7f7f7;
     border: groove;
     text-align: center;
@@ -110,12 +119,46 @@
   float:left;
 }
 
+
+.plannerBoxPast { 
+  width : 80%;
+ background-color:grey;
+ border: groove;
+ text-align: center;
+ font-size: 20px;
+ text-transform: uppercase;
+ letter-spacing: 3px;
+ height:50px;
+/* margin-top : -3px; */
+float:left;
+}
+
+
+.plannerBoxNow { 
+  width : 80%;
+ background-color:#1abc9c;
+ border: groove;
+ text-align: center;
+ font-size: 20px;
+ text-transform: uppercase;
+ letter-spacing: 3px;
+ height:50px;
+/* margin-top : -3px; */
+float:left;
+}
+
+
 .theDaysParent {
     max-height: 451px;
     overflow-y: scroll;
     /* margin-bottom: 5px;
     padding-bottom:5px; */
     /* margin-top:-5px; */
+
+}
+
+.killme {
+
 
 }
 

@@ -35,13 +35,19 @@ function isEven(value) {
 
 function showThisDay(x){
 
+
+  // get the current time according to moment. (in hour format)
+  varRightNow = moment();
+    varRightHour = varRightNow.hour();
+      console.log("right now " + varRightHour);
+
     // if this has come from the user it will have a zero x
     // if that's the case, remove all active elements and start again.
   
     if (x !== 0) {
-        $(".plannerBoxTab").remove();
-        $(".plannerBoxEven").remove();
-        $(".plannerBoxOdd").remove();
+        $(".killme").remove();
+       // $(".plannerBoxEven").remove();
+       // $(".plannerBoxOdd").remove();
                  }
 
 // lets do all 24 hours in the day. x
@@ -49,7 +55,7 @@ function showThisDay(x){
   
   
    var controlTab = $("<div>");
-    controlTab.attr("class", "plannerBoxTab");
+    controlTab.attr("class", "plannerBoxTab killme");
     controlTab.attr("id","timeID" + i); 
     var doTime = i;
     
@@ -64,11 +70,29 @@ function showThisDay(x){
 
     var plannerBox = $("<div>");
    if (isEven(i)) {
-   plannerBox.attr("class", "plannerBoxEven");} else {plannerBox.attr("class", "plannerBoxOdd");}
+      plannerBox.attr("class", "plannerBoxEven killme");} else {plannerBox.attr("class", "plannerBoxOdd killme");}
+
+    if (i < varRightHour) {
+      plannerBox.attr("class", "plannerBoxPast killme");
+        }
+
+        if (i === varRightHour) {
+          plannerBox.attr("class", "plannerBoxNow killme");
+          
+          }
+
+
     //plannerBox.text("Daily planner");
     $("#dplanner").append(plannerBox);
 
         // create control tab
+
+        var controlTabSave = $("<div>");
+        controlTabSave.attr("class", "plannerBoxSave killme");        
+       // controlTabSave.text(doTime);
+          $("#dplanner").append(controlTabSave);
+     
+
 
  }
  
