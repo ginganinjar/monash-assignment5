@@ -24,7 +24,7 @@ $(document).ready(function() {
 var  theMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 var thisDay = moment().format('DDMMY');
 var rightNow = moment().format('DDMMY');
-
+var niceDateAndTime;
 
 var Goback = 0;
 
@@ -35,14 +35,36 @@ function isEven(value) {
 		return false;
 }
 
+function doYourPlanningMagic(whichWay) {
+
+  $("#hiddenInputBox").css("visibility","visible");
+  
+    // set up edit box.
+
+    var forwardedDiv = document.getElementById(whichWay);
+    theTime = forwardedDiv.getAttribute('data-time');
+    $("#todaysDate").text("Enter task for " + niceDateAndTime + " at " + theTime);
+    
+    
+    // make the data/time go away.
+    $("#cancelEdit").click(function() {
+      $("#hiddenInputBox").css("visibility","hidden");  
+    })
+
+
+
+}
+
 function showThisDay(x){
+
+// variable to determine if we are looking at today or any other day
 var weAreHome = false;
 
   varRightNow = moment();
     varRightHour = varRightNow.hour();
       console.log("right now " + varRightHour);
 
-    // if this has come from the user it will have a zero x
+    // if this has come from the window it will have a zero x
     // if that's the case, remove all active elements and start again.
   
     if (x.length > 2) {
@@ -73,7 +95,9 @@ var weAreHome = false;
       now = parseInt(moment().format('DDMMY')).toString();
  
     // set up master date
-    $("#currentDay").html("<b>" + moment(thisDay.substr(2, 2) + "-" + thisDay.substr(0,2) + "-" + thisDay.substr(4,4 )).format('dddd, MMMM Do YYYY') + "</b>") ;
+    // nice date and time used globally
+    niceDateAndTime =  moment(thisDay.substr(2, 2) + "-" + thisDay.substr(0,2) + "-" + thisDay.substr(4,4 )).format('dddd, MMMM Do YYYY') ;
+    $("#currentDay").html("<b>" + niceDateAndTime + "</b>") ;
 
       if (x.toString().search(now) !== -1) {
         weAreHome = true;
@@ -115,8 +139,8 @@ var weAreHome = false;
     // Create the planner box.
 
     var plannerBox = $("<div>");
-    var controlTabSave = $("<div>");
-    controlTabSave.attr("class", "plannerBoxSave killme fas fa-save");
+   
+   
     
     if (isEven(i)) { plannerBox.attr("class", "plannerBoxEven killme");} 
     else 
@@ -124,18 +148,19 @@ var weAreHome = false;
    
     if ((i < varRightHour) && (isPast == false)) { 
       plannerBox.attr("class", "plannerBoxPast killme"); 
-      controlTabSave.attr("style", "color:grey");
+   
     }
     if ((i === varRightHour) && (weAreHome)) { 
       plannerBox.attr("class", "plannerBoxNow killme");
-      controlTabSave.attr("style", "color:red");
     }
-    
-    plannerBox.append('<textarea placeholder="Remember, be nice!" cols="30" rows="5" class="isHidden></textarea>');
+    plannerBox.attr("id","pboxID"+ i);
+    plannerBox.attr("data-time",doTime);
+ 
+
       $("#dplanner").append(plannerBox); // main box
+      $("#pboxID"+i).click(function () {doYourPlanningMagic(this.id, doTime); });
 
-
-    $("#dplanner").append(controlTabSave); // tab box
+ 
     
   
   }
