@@ -206,6 +206,8 @@ $(document).ready(function () {
     // time that is in the past will result in a blocked cell. time in the future will use the
     // even and odd visuals.
 
+
+
     var isPast = false;
     if (moment(rightNow.substr(2, 2) + "-" + rightNow.substr(0, 2) + "-" + rightNow.substr(4, 4)).isAfter(thisDay.substr(2, 2) + "-" + thisDay.substr(0, 2) + "-" + thisDay.substr(4, 4)) == true) {
       isPast = true;
@@ -260,7 +262,7 @@ $(document).ready(function () {
     if (isPast === true) {
       plannerBox.attr("class", "plannerBoxPast killme");
     }
-      if ((i <= varRightHour) && (isPast == false)) {
+      if ((i <= varRightHour) && (isPast == false) && (rightNow == thisDay)) {
         plannerBox.attr("class", "plannerBoxPast killme");
 
       }
@@ -275,9 +277,10 @@ $(document).ready(function () {
 
       $("#dplanner").append(plannerBox); // main box
 
+      if (isPast === false) {
       $("#pboxID" + i).click(function () {
         doYourPlanningMagic(this.id, doTime);
-      });
+      });}
 
 
       if (dumpThisTextInTheBox.length) {
@@ -307,7 +310,7 @@ $(document).ready(function () {
     }
     // scroll to the active planner box.
   
-    $(".plannerBoxNow")[0].scrollIntoView();
+    //$(".plannerBoxNow")[0].scrollIntoView();
 
   }
 

@@ -93,6 +93,7 @@
     /* margin-top: -3px; */
     float: left;
     padding: 1%;
+    cursor: pointer;
 }
 
 .plannerBoxTab {
@@ -129,6 +130,7 @@
     /* margin-top: -3px; */
     float: left;
     padding: 1%;
+    cursor: pointer;
 }
 
 
@@ -163,7 +165,7 @@ height: 50px;
 /* margin-top: -3px; */
 float: left;
 padding: 1%;
-
+cursor: pointer;
 
 }
 
@@ -174,7 +176,7 @@ padding: 1%;
 height : 200px; */
 overflow:hidden;
 font-size : 10px;
-
+cursor: pointer;
 /* / */
 
 }
