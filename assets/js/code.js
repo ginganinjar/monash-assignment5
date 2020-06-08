@@ -312,9 +312,9 @@ $(document).ready(function () {
 
     }
     // scroll to the active planner box.
-  
-    //$(".plannerBoxNow")[0].scrollIntoView();
-
+  if (rightNow == thisDay) {
+    $(".plannerBoxNow")[0].scrollIntoView();
+    }
   }
 
 
