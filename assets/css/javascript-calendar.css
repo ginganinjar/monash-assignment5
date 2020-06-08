@@ -325,7 +325,7 @@ padding : 2%;
     }
   
     .callenderFaceWrapper {
-      margin-left: 1px;
+      margin-left: 0px;
       margin-top : -15px;
       font-size: smaller;
       padding : 0px;
@@ -363,6 +363,8 @@ padding : 2%;
         .jumbotron {
           margin-left : 0;
           height: 100px;
+          min-width: 375px;
+          width : 375px;
         }
 
         .display-3 {
