@@ -271,7 +271,7 @@ $(document).ready(function () {
         plannerBox.attr("class", "plannerBoxPast killme");
 
       }
-      if ((i === varRightHour) && (weAreHome)) {
+      if ((i === varRightHour) && (weAreHome) && (rightNow == thisDay)) {
         plannerBox.attr("class", "plannerBoxNow killme");
       }
       plannerBox.attr("data-date", x);
