@@ -35,6 +35,43 @@ function isEven(value) {
 		return false;
 }
 
+function getRecord(theText) {
+ 
+ 
+  var getStorage = localStorage["davesOrganiser"];
+//alert(theText + "this is the idex search");
+
+  if (getStorage) {
+
+        // get what we have in storage
+ 
+ 
+        // if getStorageInfo is not empty then parse json otherwise set as empty array
+        var results = getStorage ? JSON.parse(getStorage) : [];
+        console.log(results);
+
+       
+      //Find index of specific object using findIndex method.    
+      var myobjIndex = results.findIndex((obj => obj.record == theText));
+         
+      //console.log("onject index" + myobjIndex);
+      if (myobjIndex !== -1)  {
+        
+      for (i = 0; i < results.length; i++){
+            if (results[i].record == theText) {
+              return(results[i].theText);  
+          }
+        }
+      }
+   
+
+  // we got nothing I'm afraid
+  return;
+
+  }
+}
+
+
 function doYourPlanningMagic(whichWay) {
 
   $("#hiddenInputBox").css("visibility","visible");
@@ -42,14 +79,67 @@ function doYourPlanningMagic(whichWay) {
     // set up edit box.
 
     var forwardedDiv = document.getElementById(whichWay);
-    theTime = forwardedDiv.getAttribute('data-time');
-    $("#todaysDate").text("Enter task for " + niceDateAndTime + " at " + theTime);
+    var theTime = forwardedDiv.getAttribute('data-time');
+    var theDatetoShow = forwardedDiv.getAttribute('data-dd');
+    var thisRecordID = theDatetoShow + theTime;
+      $("#todaysDate").text("Enter task for " + niceDateAndTime + " at " + theTime);
     
-    
+
+      var thisString = getRecord(thisRecordID);
+     // alert("this is what I'm searching for " + thisRecordID);    
+      // alert (thisString + "<- is the result I've got");
+
+ $("#inputTextArea").val(getRecord(thisRecordID));
+
+
     // make the data/time go away.
     $("#cancelEdit").click(function() {
       $("#hiddenInputBox").css("visibility","hidden");  
     })
+
+   // save save - save away. 
+   $("#saveEdit").click(function() {
+
+    // the user wrote this
+     var userEdits = $("#inputTextArea").val();
+
+        // get what we have in storage
+        var getStorageInfo = localStorage["davesOrganiser"];
+ 
+        // if getStorageInfo is not empty then parse json otherwise set as empty array
+        var results = getStorageInfo ? JSON.parse(getStorageInfo) : [];
+
+      //Find index of specific object using findIndex method.    
+      objIndex = results.findIndex((obj => obj.record == thisRecordID));
+     // console.log (objIndex);
+
+
+      if (objIndex !== -1) {
+      //Log object to Console.
+      console.log("Before update: ", results[objIndex])
+      
+      //Update object's name property.
+      results[objIndex].theText = userEdits;
+      } else 
+      {
+        results.push({ record: thisRecordID, theText: userEdits});
+            } 
+
+        // replace with new results
+        localStorage["davesOrganiser"] = JSON.stringify(results);
+        showThisDay(theDatetoShow);
+       $("#hiddenInputBox").css("visibility","hidden");  
+            // unbind the saved option to stop the annoying error of repeat saving.
+       $("#saveEdit").off();
+
+  })
+
+
+
+   
+        
+    // lets check local storage for this record
+      var getStorageInfo = localStorage["davesOrganiser"];
 
 
 
@@ -107,6 +197,13 @@ var weAreHome = false;
       // for events corresponding with ThisDay
 
 
+      var getStorageInfo = localStorage["davesOrganiser"];
+ 
+      // if getStorageInfo is not empty then parse json otherwise set as empty array
+      var results = getStorageInfo ? JSON.parse(getStorageInfo) : [];
+
+    
+
         // lets do all 24 hours in the day. x
  
         // for class purposes, we need to check if the date we are currently viewing, is before today
@@ -136,12 +233,19 @@ var weAreHome = false;
       controlTab.text(doTime);
       $("#dplanner").append(controlTab);
  
+      var dumpThisTextInTheBox = "";
+
     // Create the planner box.
+    //Find index of specific object using findIndex method.    
+    objIndex = results.findIndex((obj => obj.record == thisDay + doTime));
+    if (objIndex !== -1) {
+      //Log object to Console.
+      dumpThisTextInTheBox = results[objIndex].theText;
+     // console.log("this os what you've been looking for " + thisTextInTheBox);
+      }
+
 
     var plannerBox = $("<div>");
-   
-   
-    
     if (isEven(i)) { plannerBox.attr("class", "plannerBoxEven killme");} 
     else 
     { plannerBox.attr("class", "plannerBoxOdd killme"); }
@@ -153,14 +257,22 @@ var weAreHome = false;
     if ((i === varRightHour) && (weAreHome)) { 
       plannerBox.attr("class", "plannerBoxNow killme");
     }
+    plannerBox.attr("data-date",x);
     plannerBox.attr("id","pboxID"+ i);
     plannerBox.attr("data-time",doTime);
- 
+    plannerBox.attr("data-dd",thisDay);
+
 
       $("#dplanner").append(plannerBox); // main box
-      $("#pboxID"+i).click(function () {doYourPlanningMagic(this.id, doTime); });
 
+      $("#pboxID"+i).click(function () {doYourPlanningMagic(this.id, doTime); });
+   
  
+      if (dumpThisTextInTheBox.length) {
+        imsertThisText = "#pboxID" + i;
+        $(imsertThisText).html(dumpThisTextInTheBox);
+        }
+
     
   
   }

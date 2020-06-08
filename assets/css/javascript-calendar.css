@@ -85,13 +85,14 @@
     width : 90%;
     background-color:#dce6f1;
     border: groove;
-    text-align: center;
-    font-size: 20px;
-    text-transform: uppercase;
+    text-align: left;
+    font-size: 13px;
+    /* text-transform: uppercase; */
     letter-spacing: 3px;
-    height:50px;
-    /* margin-top : -3px; */
-  float:left;
+    height: 50px;
+    /* margin-top: -3px; */
+    float: left;
+    padding: 1%;
 }
 
 .plannerBoxTab {
@@ -120,13 +121,14 @@
      width : 90%;
     background-color:#f7f7f7;
     border: groove;
-    text-align: center;
-    font-size: 20px;
-    text-transform: uppercase;
+    text-align: left;
+    font-size: 13px;
+    /* text-transform: uppercase; */
     letter-spacing: 3px;
-    height:50px;
-  /* margin-top : -3px; */
-  float:left;
+    height: 50px;
+    /* margin-top: -3px; */
+    float: left;
+    padding: 1%;
 }
 
 
@@ -134,27 +136,35 @@
   width : 90%;
  background-color:grey;
  border: groove;
- text-align: center;
- font-size: 20px;
- text-transform: uppercase;
+ text-align: left;
+ font-size: 13px;
+ /* text-transform: uppercase; */
  letter-spacing: 3px;
- height:50px;
-/* margin-top : -3px; */
-float:left;
+ height: 50px;
+ /* margin-top: -3px; */
+ float: left;
+ padding: 1%;
 }
 
 
 .plannerBoxNow { 
   width : 90%;
- background-color:#1abc9c;
- border: groove;
- text-align: center;
- font-size: 15px;
- text-transform: uppercase;
- letter-spacing: 3px;
- height:50px;
-/* margin-top : -3px; */
-float:left;
+  float:left;
+  background-color: #1cbc9c;
+
+  border: groove;
+
+
+text-align: left;
+font-size: 13px;
+/* text-transform: uppercase; */
+letter-spacing: 3px;
+height: 50px;
+/* margin-top: -3px; */
+float: left;
+padding: 1%;
+
+
 }
 
 .plannerBoxNow .isHiddenTextArea {
@@ -211,7 +221,7 @@ font-size : 10px;
   z-index: 99999;
   /* width: 800px; */
   margin-left: -441%;
-  margin-top: 100px;
+  margin-top: 1%;
   background-color: #e9ecef;
   width: 1045%;
 }
@@ -220,3 +230,94 @@ font-size : 10px;
   /* font-weight: bolder; */
   font-size: 24px; 
 }
+
+.inputThis {
+  width:100%;
+  height : 65%;
+  resize:none;
+
+}
+
+@media screen and (max-width: 992px) {
+  .callenderFaceWrapper {
+    margin-left : -10%;
+  }
+
+  .theDaysParent {
+    /* margin-top: -5px; */
+    margin-left: 12%;
+
+}
+}
+
+@media screen and (max-width: 931px) {
+  .callenderFaceWrapper {
+    margin-left : -8%;
+  }
+
+  .theDaysParent {
+    /* margin-top: -5px; */
+    margin-left: 23%;
+
+}
+}
+
+@media screen and (max-width: 860px) {
+  .callenderFaceWrapper {
+    min-width: 100%;
+    margin-left: 10%;
+  }
+
+  .makethis {
+    margin-left: 55px;
+  }
+  .theDaysParent {
+    margin-left: 23%;
+    margin-top : 10px;
+  }
+
+  .inputThis {
+  
+  height : 54%;
+  resize:none;
+        }
+}
+
+@media screen and (max-width: 600px) {
+  .inputThis {
+    min-width: 100%;
+    height : 55%;
+  }
+
+  .makethis {
+width : 500px;
+padding : 2%;
+  }
+
+  @media screen and (max-width: 599px) and (min-width: 0px) {
+    .inputThis {
+      min-width: 100%;
+      height : 55%;
+    }
+  
+    .makethis {
+  width : 440px;
+  padding : 2%;
+  height: 268px;
+  margin-left: 0;
+    }
+
+    .makethis h1 {
+      font-size: 18px;
+    }
+  
+    .callenderFaceWrapper {
+      margin-left:2%;
+      }
+
+      .theDaysParent {
+        margin-left : -10px;
+        margin-top : 20px;
+        overflow-y: visible;
+      }
+  }

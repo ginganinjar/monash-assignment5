@@ -21,12 +21,12 @@
       <p id="currentDay" class="lead"></p>
     </header>
 
-    <div class="container" >
+    <div class="container fluid" >
       <div class = "row">
     
-        <div class="col-sm-5">
+        <div class="col-sm-5 callenderFaceWrapper">
            
-  
+ <div class="callenderFaceWrapper">
     <div class="callenderFace">
       <div class="month"> 
         <ul>
@@ -49,6 +49,7 @@
      <div id="thedays"></div>
          
         </div>
+        </div>
       </div>
 
 
@@ -62,7 +63,7 @@
               <div class="middleColumnSpanIt">
             <div id="hiddenInputBox" class="makethis" style="visibility: hidden;"> 
               <div><h1 id="todaysDate">Enter event for this date and time</h1></div>
-              <textarea name="scheduler" id="inputTextArea" style="width:100%;height:68%;resize: none;"></textarea>
+              <textarea name="scheduler" id="inputTextArea" class="inputThis"></textarea>
               <button type="button" class="btn btn-success" id="saveEdit">Save</button>
               <button type="button" class="btn btn-danger" id="cancelEdit">Cancel</button>
             </div>
