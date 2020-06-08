@@ -325,15 +325,70 @@ padding : 2%;
     }
   
     .callenderFaceWrapper {
-      margin-left: -5px;
+      margin-left: 1px;
       margin-top : -15px;
+      font-size: smaller;
+      padding : 0px;
       }
 
       .theDaysParent {
-        margin-left : -10px;
-        margin-top : 20px;
-        /* overflow-y: visible; */
+        margin-left: -15px;
+        margin-top: 10px;
+        overflow-y: visible;
+        width : 250px;
+        font-size: 10px;
+        font-size : 10px;
+        padding: 0;
       }
+
+      .plannerBoxEven {
+        width : 85%;
+      }
+
+      .plannerBoxOdd {
+        width : 85%;
+      }
+      .plannerBoxPast {
+        width : 85%;
+      }
+       
+        .plannerBoxNow {
+          width : 85%;
+        }
+
+        .plannerBoxPast {
+          width : 85%;
+        }
+
+        .jumbotron {
+          margin-left : 0;
+          height: 100px;
+        }
+
+        .display-3 {
+          font-size : 20px;
+          font-weight : 500;
+
+        }
+
+        .lead {
+          display : none;
+        }
+        .dayinMomth {
+          width: 53px;
+        }
+        .callenderFace {
+          display: block;
+          min-width: 375px;
+          width : 375px;
+        }
+
+        .daysInWeek {
+        width : 52px;
+
+
+        }
+
   }
 
  
