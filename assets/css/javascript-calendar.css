@@ -312,11 +312,11 @@ padding : 2%;
     }
   
     .makethis {
-  width : 440px;
-  padding : 2%;
-  height: 268px;
-  margin-left: 0;
-  margin-top : 20vh;
+      width: 371px;
+      padding : 2%;
+      height: 268px;
+      margin-left: 0;
+      margin-top : 20vh;
     }
 
     .makethis h1 {
@@ -324,13 +324,14 @@ padding : 2%;
     }
   
     .callenderFaceWrapper {
-      margin-left:2%;
+      margin-left: -5px;
+      margin-top : -15px;
       }
 
       .theDaysParent {
         margin-left : -10px;
         margin-top : 20px;
-        overflow-y: visible;
+        /* overflow-y: visible; */
       }
   }
 
