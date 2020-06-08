@@ -245,23 +245,28 @@ $(document).ready(function () {
       //Find index of specific object using findIndex method.    
       objIndex = results.findIndex((obj => obj.record == thisDay + doTime));
       if (objIndex !== -1) {
+     
         //Log object to Console.
         dumpThisTextInTheBox = results[objIndex].theText;
-        // console.log("this os what you've been looking for " + thisTextInTheBox);
+
       }
 
 
       var plannerBox = $("<div>");
+
+      // all upcoming days are either odd or even.
       if (isEven(i)) {
         plannerBox.attr("class", "plannerBoxEven killme");
       } else {
         plannerBox.attr("class", "plannerBoxOdd killme");
       }
 
-  
+    // dont show previous days as editable.
     if (isPast === true) {
       plannerBox.attr("class", "plannerBoxPast killme");
     }
+
+      // this switch is specifically for today (as in now) and before now 
       if ((i <= varRightHour) && (isPast == false) && (rightNow == thisDay)) {
         plannerBox.attr("class", "plannerBoxPast killme");
 
@@ -297,8 +302,6 @@ $(document).ready(function () {
           } else {
             upNext = "Nothing scheduled yet";
           }
-          // alert(upNext);
-
 
           $("#upNext").text(upNext);
 
