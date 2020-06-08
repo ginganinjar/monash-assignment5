@@ -137,6 +137,7 @@
 .plannerBoxPast { 
   width : 90%;
  background-color:grey;
+ color : #fff;
  border: groove;
  text-align: left;
  font-size: 13px;
@@ -153,7 +154,7 @@
   width : 90%;
   float:left;
   background-color: #1cbc9c;
-
+  color : #fff;
   border: groove;
 
 
