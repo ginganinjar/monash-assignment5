@@ -273,6 +273,7 @@ $(document).ready(function () {
       }
       if ((i === varRightHour) && (weAreHome) && (rightNow == thisDay)) {
         plannerBox.attr("class", "plannerBoxNow killme");
+          var afterNow = i;
       }
       plannerBox.attr("data-date", x);
       plannerBox.attr("id", "pboxID" + i);
@@ -292,26 +293,30 @@ $(document).ready(function () {
         imsertThisText = "#pboxID" + i;
         $(imsertThisText).html(dumpThisTextInTheBox);
 
-
-        // we want to display the next event in the schedule.
+  
+ // we want to display the next event in the schedule.
         // so send dumpThisTextInTheBox to upnext. 
-        //alert(upNext);
-        if ((upNext === undefined) & (isPast == false) & (weAreHome == true)) {
+
+  if ((afterNow < i) && (upNext == undefined)) { 
           if (dumpThisTextInTheBox) {
             upNext = "Next task : " + dumpThisTextInTheBox;
-          } else {
+                } 
+                  else {
             upNext = "Nothing scheduled yet";
-          }
-
+                }
           $("#upNext").text(upNext);
-
         }
+
+ // if we got to the end of the day and there are no events
+  // then inform user no events outstanding
+
+        if ((i == 23) && (upNext == undefined)) {
+          $("#upNext").text('No events outstanding');
+         }
       }
-
-
-
     }
-    // scroll to the active planner box.
+    // scroll to the active planner box if this day has an active
+    // field class
   if (rightNow == thisDay) {
     $(".plannerBoxNow")[0].scrollIntoView();
     }
