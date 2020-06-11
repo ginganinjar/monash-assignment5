@@ -1,217 +1,193 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .month {
-       padding: 8px 25px;
-    width: 100%;
-    background: #1abc9c;
-    text-align: center;
+  padding: 8px 25px;
+  width: 100%;
+  background: #1abc9c;
+  text-align: center;
 
-    margin-bottom: 3%;
-  }
-  
-  .month ul {
-    list-style-type:none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .month ul li {
-    color: white;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-  }
-  
-  .month .prev {
-    float: left;
-    padding-top: 10px;
-    cursor: pointer;
+  margin-bottom: 3%;
+}
 
-  }
-  
-  .month .next {
-    cursor: pointer;
-    float: right;
-    padding-top: 10px;
-  }
-  
+.month ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+  cursor: pointer;
+
+}
+
+.month .next {
+  cursor: pointer;
+  float: right;
+  padding-top: 10px;
+}
+
 .display-3 {
-    text-align: center;
+  text-align: center;
 }
 
 .lead {
-    text-align: center;
+  text-align: center;
 }
-    .dayinMomth {
-        float: left;
-        height: 55px;
-        width: 56px;
-        border: solid;
-        padding: 3%;
-        MARGIN-TOP: 0;
-        MARGIN-BOTTOM: 0;
-    }
 
-    .daysToDelete {
-     
-  }
+.dayinMomth {
+  float: left;
+  height: 55px;
+  width: 56px;
+  border: solid;
+  padding: 3%;
+  MARGIN-TOP: 0;
+  MARGIN-BOTTOM: 0;
+}
 
-    .daysInWeek {
-        float: left;
-        height: 55px;
-        width: 55px;
-        border: none;
-        padding: 3%;
-        text-align: -webkit-center;
-        padding-right: -7%;
-        margin-bottom: 0;
+.daysToDelete {}
 
-    }
+.daysInWeek {
+  float: left;
+  height: 55px;
+  width: 55px;
+  border: none;
+  padding: 3%;
+  text-align: -webkit-center;
+  padding-right: -7%;
+  margin-bottom: 0;
+
+}
 
 .callenderFace {
-    WIDTH: 400px;
-    display : block;
-    min-width: 400px;
+  WIDTH: 400px;
+  display: block;
+  min-width: 400px;
 }
- 
+
 .middleColumnSpanIt {
   min-width: 61px;
 
 }
 
 .plannerBoxEven {
-    width : 90%;
-    background-color:#dce6f1;
-    border: groove;
-    text-align: left;
-    font-size: 13px;
-    /* text-transform: uppercase; */
-    letter-spacing: 3px;
-    height: 50px;
-    /* margin-top: -3px; */
-    float: left;
-    padding: 1%;
-    cursor: pointer;
+  width: 90%;
+  background-color: #dce6f1;
+  border: groove;
+  text-align: left;
+  font-size: 13px;
+  letter-spacing: 3px;
+  height: 50px;
+  float: left;
+  padding: 1%;
+  cursor: pointer;
 }
 
 .plannerBoxTab {
-    height:50px;
-    width : 9%;
-    float : left;
-    background-color: #fff;
-    border: groove;
-    /* margin-top: -3px; */
-    /* border-radius: 35px 5px 5px 25px; */
-
-  }
- 
-  .plannerBoxSave {
-    height:50px;
-    width : 9%;
-    float : left;   
-    background-color:#dce6f1;
-    border: groove;
-    border-radius: 5px 15px 30px 5px;
-     font-size: xx-large;
-     color: #c71515;
-  }
-
-.plannerBoxOdd { 
-     width : 90%;
-    background-color:#f7f7f7;
-    border: groove;
-    text-align: left;
-    font-size: 13px;
-    /* text-transform: uppercase; */
-    letter-spacing: 3px;
-    height: 50px;
-    /* margin-top: -3px; */
-    float: left;
-    padding: 1%;
-    cursor: pointer;
-}
-
-
-.plannerBoxPast { 
-  width : 90%;
- background-color:grey;
- color : #fff;
- border: groove;
- text-align: left;
- font-size: 13px;
- /* text-transform: uppercase; */
- letter-spacing: 3px;
- height: 50px;
- /* margin-top: -3px; */
- float: left;
- padding: 1%;
-}
-
-
-.plannerBoxNow { 
-  width : 90%;
-  float:left;
-  background-color: #1cbc9c;
-  color : #fff;
+  height: 50px;
+  width: 9%;
+  float: left;
+  background-color: #fff;
   border: groove;
 
+}
 
-text-align: left;
-font-size: 13px;
-/* text-transform: uppercase; */
-letter-spacing: 3px;
-height: 50px;
-/* margin-top: -3px; */
-float: left;
-padding: 1%;
-cursor: pointer;
+.plannerBoxSave {
+  height: 50px;
+  width: 9%;
+  float: left;
+  background-color: #dce6f1;
+  border: groove;
+  border-radius: 5px 15px 30px 5px;
+  font-size: xx-large;
+  color: #c71515;
+}
 
+.plannerBoxOdd {
+  width: 90%;
+  background-color: #f7f7f7;
+  border: groove;
+  text-align: left;
+  font-size: 13px;
+  letter-spacing: 3px;
+  height: 50px;
+  float: left;
+  padding: 1%;
+  cursor: pointer;
+}
+
+
+.plannerBoxPast {
+  width: 90%;
+  background-color: grey;
+  color: #fff;
+  border: groove;
+  text-align: left;
+  font-size: 13px;
+  letter-spacing: 3px;
+  height: 50px;
+  float: left;
+  padding: 1%;
+}
+
+
+.plannerBoxNow {
+  width: 90%;
+  float: left;
+  background-color: #1cbc9c;
+  color: #fff;
+  border: groove;
+  text-align: left;
+  font-size: 13px;
+  letter-spacing: 3px;
+  height: 50px;
+  float: left;
+  padding: 1%;
+  cursor: pointer;
 }
 
 .plannerBoxNow .isHiddenTextArea {
-/* visibility: hidden; */
-/* position: relative;  */
-/* width : 400px;
-height : 200px; */
-overflow:hidden;
-font-size : 10px;
-cursor: pointer;
-/* / */
+
+  overflow: hidden;
+  font-size: 10px;
+  cursor: pointer;
 
 }
 
 .theDaysParent {
-    max-height: 451px;
-    overflow-y: scroll;
-    min-width: 400px;
-    /* margin-bottom: 5px;
-    padding-bottom:5px; */
-    /* margin-top:-5px; */
-
+  max-height: 451px;
+  overflow-y: scroll;
+  min-width: 400px;
 }
 
-.killme {
-}
+.killme {}
 
 .textBoxClass {
   resize: none;
-
 }
 
 ::-webkit-scrollbar {
-    width: 30px;
+  width: 30px;
 }
- 
+
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 .makethis {
@@ -230,47 +206,44 @@ cursor: pointer;
 }
 
 .makethis h1 {
-  /* font-weight: bolder; */
-  font-size: 24px; 
+  font-size: 24px;
 
 }
 
 .inputThis {
-  width:100%;
-  height : 65%;
-  resize:none;
+  width: 100%;
+  height: 65%;
+  resize: none;
 
 }
 
 .upNextText {
   text-align: center;
-  /* visibility: hidden; */
 }
 
 
 
 @media screen and (max-width: 992px) {
   .callenderFaceWrapper {
-    margin-left : -10%;
+    margin-left: -10%;
   }
 
   .theDaysParent {
-    /* margin-top: -5px; */
     margin-left: 12%;
 
-}
+  }
 }
 
 @media screen and (max-width: 931px) {
   .callenderFaceWrapper {
-    margin-left : -8%;
+    margin-left: -8%;
   }
 
   .theDaysParent {
     /* margin-top: -5px; */
     margin-left: 23%;
 
-}
+  }
 }
 
 @media screen and (max-width: 860px) {
@@ -282,115 +255,114 @@ cursor: pointer;
   .makethis {
     margin-left: 55px;
   }
+
   .theDaysParent {
     margin-left: 23%;
-    margin-top : 10px;
+    margin-top: 10px;
   }
 
   .inputThis {
-  
-  height : 54%;
-  resize:none;
-        }
+    height: 54%;
+    resize: none;
+  }
 }
 
 @media screen and (max-width: 600px) {
   .inputThis {
     min-width: 100%;
-    height : 55%;
+    height: 55%;
   }
 
   .makethis {
-width : 500px;
-padding : 2%;
+    width: 500px;
+    padding: 2%;
   }
 }
 
-  @media screen and (max-width: 599px) and (min-width: 0px) {
-    .inputThis {
-      min-width: 100%;
-      height : 55%;
-    }
-  
-    .makethis {
-      width: 352px;
-      padding: 2%;
-      height: 268px;
-      margin-left: -8px;
-      margin-top: 20vh;
-    }
+@media screen and (max-width: 599px) and (min-width: 0px) {
+  .inputThis {
+    min-width: 100%;
+    height: 55%;
+  }
 
-    .makethis h1 {
-      font-size: 18px;
-    }
-  
-    .callenderFaceWrapper {
-      margin-left: 0px;
-      margin-top : -15px;
-      font-size: smaller;
-      padding : 0px;
-      }
+  .makethis {
+    width: 352px;
+    padding: 2%;
+    height: 268px;
+    margin-left: -8px;
+    margin-top: 20vh;
+  }
 
-      .theDaysParent {
-        margin-left: -15px;
-        margin-top: 10px;
-        overflow-y: visible;
-        width : 250px;
-        font-size: 10px;
-        font-size : 10px;
-        padding: 0;
-      }
+  .makethis h1 {
+    font-size: 18px;
+  }
 
-      .plannerBoxEven {
-        width : 85%;
-      }
+  .callenderFaceWrapper {
+    margin-left: 0px;
+    margin-top: -15px;
+    font-size: smaller;
+    padding: 0px;
+  }
 
-      .plannerBoxOdd {
-        width : 85%;
-      }
-      .plannerBoxPast {
-        width : 85%;
-      }
-       
-        .plannerBoxNow {
-          width : 85%;
-        }
+  .theDaysParent {
+    margin-left: -15px;
+    margin-top: 10px;
+    overflow-y: visible;
+    width: 250px;
+    font-size: 10px;
+    font-size: 10px;
+    padding: 0;
+  }
 
-        .plannerBoxPast {
-          width : 85%;
-        }
+  .plannerBoxEven {
+    width: 85%;
+  }
 
-        .jumbotron {
-          margin-left : 0;
-          height: 100px;
-          min-width: 375px;
-          width : 375px;
-        }
+  .plannerBoxOdd {
+    width: 85%;
+  }
 
-        .display-3 {
-          font-size : 20px;
-          font-weight : 500;
+  .plannerBoxPast {
+    width: 85%;
+  }
 
-        }
+  .plannerBoxNow {
+    width: 85%;
+  }
 
-        .lead {
-          display : none;
-        }
-        .dayinMomth {
-          width: 53px;
-        }
-        .callenderFace {
-          display: block;
-          min-width: 375px;
-          width : 375px;
-        }
+  .plannerBoxPast {
+    width: 85%;
+  }
 
-        .daysInWeek {
-        width : 52px;
+  .jumbotron {
+    margin-left: 0;
+    height: 100px;
+    min-width: 375px;
+    width: 375px;
+  }
 
-
-        }
+  .display-3 {
+    font-size: 20px;
+    font-weight: 500;
 
   }
 
- 
+  .lead {
+    display: none;
+  }
+
+  .dayinMomth {
+    width: 53px;
+  }
+
+  .callenderFace {
+    display: block;
+    min-width: 375px;
+    width: 375px;
+  }
+
+  .daysInWeek {
+    width: 52px;
+  }
+
+}

@@ -16,12 +16,6 @@ $(document).ready(function () {
   }
 
 
-  function isEven(value) {
-    if (value % 2 == 0)
-      return true;
-    else
-      return false;
-  }
 
   function getRecord(theText) {
 
@@ -134,6 +128,15 @@ $(document).ready(function () {
 
   function showThisDay(x) {
 
+    function isEven(value) {
+      if (value % 2 == 0)
+        return true;
+      else
+        return false;
+    }
+  
+
+
     // variable to determine if we are looking at today or any other day
     var weAreHome = false;
     upNext = undefined;
@@ -150,7 +153,7 @@ $(document).ready(function () {
       // because javascript is like coding with a potato, and because the artifical placement
       // of a 0 in front of the i integer from the sender is still traunicated, and because
       // regix no longer works, I have to manually look for date ranges that are 7 as opposed 
-      // to 8. and upon finding this, add it back into the string.
+      // to 8. and upon finding this, add it back into the begining of the string.
 
       if (thisDay.length == 7) {
         thisDay = "0" + thisDay;
@@ -299,7 +302,7 @@ $(document).ready(function () {
 
   if ((afterNow < i) && (upNext == undefined)) { 
           if (dumpThisTextInTheBox) {
-            upNext = "Next task : " + dumpThisTextInTheBox;
+            upNext = "Next task at " + doTime +" :" + dumpThisTextInTheBox;
                 } 
                   else {
             upNext = "Nothing scheduled yet";
@@ -365,31 +368,10 @@ $(document).ready(function () {
     var findMyFirstDay = moment([theYear, theMonthNumber - 1]).toString();
     var dateArray = findMyFirstDay.split(" ");
 
-    // for some reason the value in a loop would not resolve
-    // had to do it manually like below, which is aweful i know 
-    // but i couldn't work out any other way.
+    // Tri helped me here.. the previous code was poor.
 
-    if (dateArray[0] === "Sun") {
-      dow = 0;
-    }
-    if (dateArray[0] === "Mon") {
-      dow = 1;
-    }
-    if (dateArray[0] === "Tue") {
-      dow = 2;
-    }
-    if (dateArray[0] === "Wed") {
-      dow = 3;
-    }
-    if (dateArray[0] === "Thu") {
-      dow = 4;
-    }
-    if (dateArray[0] === "Fri") {
-      dow = 5;
-    }
-    if (dateArray[0] === "Sat") {
-      dow = 6;
-    }
+    var dowArray = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+      var dow = dowArray.indexOf(dateArray[0]);
 
     $("#theMonth").html("<p>" + theMonth + " " + theYear + "</p>");
 
