@@ -9,7 +9,7 @@ $(document).ready(function () {
   var niceDateAndTime;
   var upNext;
 
-  var Goback = 0;
+  var goBack = 0;
 
   function upNextInterval() {
 
@@ -52,6 +52,12 @@ $(document).ready(function () {
 
 
   function doYourPlanningMagic(whichWay) {
+
+    // check to see if this box is an old event. if so, do not proceed
+   if ($("#" + whichWay).hasClass("plannerBoxPast") == false) {
+ 
+      
+   
 
     $("#hiddenInputBox").css("visibility", "visible");
 
@@ -103,7 +109,8 @@ $(document).ready(function () {
         //Log object to Console.
         console.log("Before update: ", results[objIndex])
 
-        //Update object's name property.
+        //Update object's theText property to avoid duplication.
+
         results[objIndex].theText = userEdits;
       } else {
         results.push({
@@ -123,7 +130,7 @@ $(document).ready(function () {
 
     // lets check local storage for this record
     var getStorageInfo = localStorage["davesOrganiser"];
-
+    }
   }
 
   function showThisDay(x) {
@@ -134,7 +141,7 @@ $(document).ready(function () {
       else
         return false;
     }
-  
+
 
 
     // variable to determine if we are looking at today or any other day
@@ -248,7 +255,7 @@ $(document).ready(function () {
       //Find index of specific object using findIndex method.    
       objIndex = results.findIndex((obj => obj.record == thisDay + doTime));
       if (objIndex !== -1) {
-     
+
         //Log object to Console.
         dumpThisTextInTheBox = results[objIndex].theText;
 
@@ -264,10 +271,10 @@ $(document).ready(function () {
         plannerBox.attr("class", "plannerBoxOdd killme");
       }
 
-    // dont show previous days as editable.
-    if (isPast === true) {
-      plannerBox.attr("class", "plannerBoxPast killme");
-    }
+      // dont show previous days as editable.
+      if (isPast === true) {
+        plannerBox.attr("class", "plannerBoxPast killme");
+      }
 
       // this switch is specifically for today (as in now) and before now 
       if ((i <= varRightHour) && (isPast == false) && (rightNow == thisDay)) {
@@ -276,7 +283,7 @@ $(document).ready(function () {
       }
       if ((i === varRightHour) && (weAreHome) && (rightNow == thisDay)) {
         plannerBox.attr("class", "plannerBoxNow killme");
-          var afterNow = i;
+        var afterNow = i;
       }
       plannerBox.attr("data-date", x);
       plannerBox.attr("id", "pboxID" + i);
@@ -286,61 +293,65 @@ $(document).ready(function () {
 
       $("#dplanner").append(plannerBox); // main box
 
+      
       if (isPast === false) {
-      $("#pboxID" + i).click(function () {
-        doYourPlanningMagic(this.id, doTime);
-      });}
+        $("#pboxID" + i).click(function () {
+          doYourPlanningMagic(this.id, doTime);
+        });
+      }
 
 
       if (dumpThisTextInTheBox.length) {
         imsertThisText = "#pboxID" + i;
         $(imsertThisText).html(dumpThisTextInTheBox);
 
-  
- // we want to display the next event in the schedule.
+
+        // we want to display the next event in the schedule.
         // so send dumpThisTextInTheBox to upnext. 
 
-  if ((afterNow < i) && (upNext == undefined)) { 
+        if ((afterNow < i) && (upNext == undefined)) {
           if (dumpThisTextInTheBox) {
-            upNext = "Next task at " + doTime +" :" + dumpThisTextInTheBox;
-                } 
-                  else {
+            upNext = "Next task at " + doTime + " :" + dumpThisTextInTheBox;
+          }
+          else {
             upNext = "Nothing scheduled yet";
-                }
+          }
           $("#upNext").text(upNext);
         }
 
- // if we got to the end of the day and there are no events
-  // then inform user no events outstanding
+        // if we got to the end of the day and there are no events
+        // then inform user no events outstanding
 
         if ((i == 23) && (upNext == undefined)) {
           $("#upNext").text('No events outstanding');
-         }
+        }
       }
     }
     // scroll to the active planner box if this day has an active
     // field class
-  if (rightNow == thisDay) {
-    $(".plannerBoxNow")[0].scrollIntoView();
+    if (rightNow == thisDay) {
+      $(".plannerBoxNow")[0].scrollIntoView();
     }
   }
 
 
   // this function is used to set up the main callender.
   // and uses info to submit to users.
-  
+
   function setupPage(x) {
 
+    // i HATE this code. There must be a better way to do this.
+
     if (x === 0) {
-      Goback = 0;
+      goBack = 0;
     }
 
     if (x === -1) {
-      Goback++;
+      goBack++;
       $(".dayinMomth").remove();
     }
     if (x === +1) {
-      Goback--;
+      goBack--;
       $(".dayinMomth").remove();
     }
 
@@ -350,19 +361,19 @@ $(document).ready(function () {
     var theTrueMonth = theMonths[theTrueMonth - 1];
 
     // the momth and year
-    var parseThis = moment().subtract(Goback, 'month').format('MM') + moment().subtract(0, 'month').format('YYYY');
+    var parseThis = moment().subtract(goBack, 'month').format('MM') + moment().subtract(0, 'month').format('YYYY');
 
     // the month today +/- mod
-    var theMonthNumber = [parseInt(moment().subtract(Goback, 'month').format('MM'))];
+    var theMonthNumber = [parseInt(moment().subtract(goBack, 'month').format('MM'))];
     var theMonth = theMonths[theMonthNumber - 1];
 
     // the year today +/- mod
-    var theYear = parseInt(moment().subtract(Goback, 'month').format('YYYY'));
+    var theYear = parseInt(moment().subtract(goBack, 'month').format('YYYY'));
     // the day today +/- mod
-    var theDay = moment().subtract(Goback, 'month').format('DD');
+    var theDay = moment().subtract(goBack, 'month').format('DD');
 
     // set global variable
-    thisDay = moment().subtract(Goback, 'month').format('DD') + moment().subtract(Goback, 'month').format('MM') + theYear;
+    thisDay = moment().subtract(goBack, 'month').format('DD') + moment().subtract(goBack, 'month').format('MM') + theYear;
 
     // do a strip of the first day of the month - Sun Mar 01 2020 00:00:00 GMT+1100
     var findMyFirstDay = moment([theYear, theMonthNumber - 1]).toString();
@@ -370,8 +381,8 @@ $(document).ready(function () {
 
     // Tri helped me here.. the previous code was poor.
 
-    var dowArray = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-      var dow = dowArray.indexOf(dateArray[0]);
+    var dowArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var dow = dowArray.indexOf(dateArray[0]);
 
     $("#theMonth").html("<p>" + theMonth + " " + theYear + "</p>");
 
@@ -408,9 +419,7 @@ $(document).ready(function () {
           showThisDay(this.id);
 
         })
-      } else
-
-      {
+      } else {
         thisDayDiv.addClass("dayinMomth");
         thisDayDiv.text("");
         thisDayDiv.css("background-color", "#eff0f1");
