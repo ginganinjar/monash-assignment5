@@ -71,8 +71,6 @@ $(document).ready(function () {
 
 
     var thisString = getRecord(thisRecordID);
-    // alert("this is what I'm searching for " + thisRecordID);    
-    // alert (thisString + "<- is the result I've got");
 
     $("#inputTextArea").val(getRecord(thisRecordID));
     // scroll the input box into view (primarily for mobile view.)
